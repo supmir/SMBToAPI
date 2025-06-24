@@ -1,4 +1,4 @@
-# SMB Relay API
+# SMB To API
 
 A simple Flask-based REST API for interacting with SMB (Windows file share) servers. This API allows you to list, create, retrieve, rename, copy, move, and delete files or directories on a remote SMB share.
 
