@@ -37,7 +37,7 @@ if missing_env_vars:
 
 SMB_CONFIG = {
     "host": os.getenv("SMB_HOST"),
-    "port": os.getenv("SMB_PORT"),
+    "port": int(os.getenv("SMB_PORT")),
     "username": os.getenv("SMB_USERNAME"),
     "password": os.getenv("SMB_PASSWORD"),
     "my_name": os.getenv("SMB_NAME"),
@@ -478,7 +478,7 @@ def delete_file():
 
 
 @app.teardown_appcontext
-def close_connections():
+def close_connections(exception=None):
     """Closes the SMB connection when the application context tears down."""
     global SMB_CONNECTION
     if SMB_CONNECTION is not None:
