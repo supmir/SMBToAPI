@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc python3-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir --user Flask==3.1.1 pysmb==1.2.11
+RUN pip install --no-cache-dir --user Flask==3.1.1 pysmb==1.2.11 gunicorn==22.0.0
 
 FROM python:3.12-slim-bookworm
 
@@ -21,4 +21,4 @@ ENV FLASK_ENV=production
 
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
